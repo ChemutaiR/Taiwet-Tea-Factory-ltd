@@ -16,8 +16,17 @@ interface ApplicationPageProps {
   }>;
 }
 
+interface JobData {
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  level: string;
+  description: string;
+}
+
 // Sample job data - in a real app, this would come from an API
-const jobData: Record<string, any> = {
+const jobData: Record<string, JobData> = {
   "1": {
     title: "Tea Processing Specialist",
     department: "Production",
@@ -131,7 +140,7 @@ export default function ApplicationPage({ params }: ApplicationPageProps) {
             Thank you for applying to the {job.title} position.
           </p>
           <p className="mt-2 text-gray-500">
-            We'll review your application and get back to you within 5-7 business days.
+            We&apos;ll review your application and get back to you within 5-7 business days.
           </p>
           <div className="mt-8 flex gap-4 justify-center">
             <Link
@@ -342,8 +351,8 @@ export default function ApplicationPage({ params }: ApplicationPageProps) {
                 <DropdownMenuContent className="z-50 bg-white border border-gray-300 shadow-lg" style={{ width: 'var(--radix-dropdown-menu-trigger-width)' }}>
                   <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer" onClick={() => setFormData(prev => ({ ...prev, education: "High School" }))}>High School</DropdownMenuItem>
                   <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer" onClick={() => setFormData(prev => ({ ...prev, education: "Associate Degree" }))}>Associate Degree</DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer" onClick={() => setFormData(prev => ({ ...prev, education: "Bachelor's Degree" }))}>Bachelor's Degree</DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer" onClick={() => setFormData(prev => ({ ...prev, education: "Master's Degree" }))}>Master's Degree</DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer" onClick={() => setFormData(prev => ({ ...prev, education: "Bachelor&apos;s Degree" }))}>Bachelor&apos;s Degree</DropdownMenuItem>
+                  <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer" onClick={() => setFormData(prev => ({ ...prev, education: "Master&apos;s Degree" }))}>Master&apos;s Degree</DropdownMenuItem>
                   <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer" onClick={() => setFormData(prev => ({ ...prev, education: "PhD" }))}>PhD</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -373,7 +382,7 @@ export default function ApplicationPage({ params }: ApplicationPageProps) {
                 name="coverLetter"
                 rows={6}
                 className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#2e7d32] focus:outline-none focus:ring-1 focus:ring-[#2e7d32]"
-                placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+                placeholder="Tell us why you&apos;re interested in this position and what makes you a great fit..."
                 value={formData.coverLetter}
                 onChange={handleInputChange}
               />
@@ -417,7 +426,7 @@ export default function ApplicationPage({ params }: ApplicationPageProps) {
                 name="additionalInfo"
                 rows={3}
                 className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#2e7d32] focus:outline-none focus:ring-1 focus:ring-[#2e7d32]"
-                placeholder="Any additional information you'd like to share..."
+                placeholder="Any additional information you&apos;d like to share..."
                 value={formData.additionalInfo}
                 onChange={handleInputChange}
               />

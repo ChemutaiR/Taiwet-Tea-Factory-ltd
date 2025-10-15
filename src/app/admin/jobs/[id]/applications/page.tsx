@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, use } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -86,21 +86,14 @@ const sampleApplications = [
 
 const statusOptions = ["Under Review", "Shortlisted", "Interview Scheduled", "Rejected", "Hired"];
 
-export default function JobApplicationsPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params);
-  const jobId = resolvedParams.id;
+export default function JobApplicationsPage() {
   const jobTitle = "Tea Processing Specialist"; // This would come from the job data
   const [selectedResume, setSelectedResume] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleViewResume = (resumeFile: string, applicantName: string) => {
+  const handleViewResume = (resumeFile: string) => {
     setSelectedResume(resumeFile);
     setIsDialogOpen(true);
-  };
-
-  const closeDialog = () => {
-    setIsDialogOpen(false);
-    setSelectedResume(null);
   };
 
   return (
@@ -326,7 +319,7 @@ export default function JobApplicationsPage({ params }: { params: Promise<{ id: 
                   </DropdownMenuContent>
                 </DropdownMenu>
                 <button 
-                  onClick={() => handleViewResume(application.resume, application.applicantName)}
+                  onClick={() => handleViewResume(application.resume)}
                   className="rounded-md bg-[#2e7d32] px-3 py-2 text-sm text-white hover:bg-[#276a2b] transition-colors"
                 >
                   View Resume

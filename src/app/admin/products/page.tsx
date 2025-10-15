@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -174,10 +175,11 @@ export default function ProductsPage() {
         {products.map((product) => (
           <div key={product.id} className="rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
             <div className="relative h-48 w-full">
-              <img 
+              <Image 
                 src={product.image} 
                 alt={product.name}
-                className="h-full w-full rounded-t-lg object-cover"
+                fill
+                className="rounded-t-lg object-cover"
               />
               <div className="absolute top-2 right-2 flex space-x-1">
                 <span className={`rounded-full px-2 py-1 text-xs font-medium ${

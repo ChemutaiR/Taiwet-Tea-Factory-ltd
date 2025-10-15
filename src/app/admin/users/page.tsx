@@ -17,7 +17,28 @@ import {
 import { Button } from "@/components/ui/button";
 import DataTable from "@/components/shared/DataTable";
 
-const sampleUsers = [
+interface Order {
+  id: string;
+  date: string;
+  amount: string;
+  status: string;
+  items: string[];
+}
+
+interface User extends Record<string, unknown> {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  joinDate: string;
+  totalOrders: number;
+  totalSpent: string;
+  lastLogin: string;
+  orders: Order[];
+}
+
+const sampleUsers: User[] = [
   {
     id: "1",
     name: "John Smith",
@@ -102,11 +123,11 @@ const roles = ["All Roles", "Admin", "Employee", "Customer"];
 const statuses = ["All Statuses", "Active", "Inactive", "Suspended"];
 
 export default function UsersManagement() {
-  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
 
-  const handleViewDetails = (user: any) => {
+  const handleViewDetails = (user: User) => {
     setSelectedUser(user);
     setIsDialogOpen(true);
   };
@@ -121,7 +142,7 @@ export default function UsersManagement() {
       key: "name",
       header: "User",
       sortable: true,
-      render: (value: string, row: any) => (
+      render: (value: unknown, row: User) => (
         <div>
           <div className="text-sm font-medium text-gray-900">{row.name}</div>
           <div className="text-sm text-gray-500">{row.email}</div>
@@ -132,13 +153,13 @@ export default function UsersManagement() {
       key: "role",
       header: "Role",
       sortable: true,
-      render: (value: string) => (
+      render: (value: unknown) => (
         <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
           value === 'Admin' ? 'bg-red-100 text-red-800' :
           value === 'Employee' ? 'bg-blue-100 text-blue-800' :
           'bg-green-100 text-green-800'
         }`}>
-          {value}
+          {String(value)}
         </span>
       ),
     },
@@ -146,13 +167,13 @@ export default function UsersManagement() {
       key: "status",
       header: "Status",
       sortable: true,
-      render: (value: string) => (
+      render: (value: unknown) => (
         <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
           value === 'Active' ? 'bg-green-100 text-green-800' :
           value === 'Inactive' ? 'bg-gray-100 text-gray-800' :
           'bg-red-100 text-red-800'
         }`}>
-          {value}
+          {String(value)}
         </span>
       ),
     },
@@ -160,31 +181,31 @@ export default function UsersManagement() {
       key: "totalOrders",
       header: "Orders",
       sortable: true,
-      render: (value: number) => (
-        <span className="text-sm text-gray-900">{value}</span>
+      render: (value: unknown) => (
+        <span className="text-sm text-gray-900">{String(value)}</span>
       ),
     },
     {
       key: "totalSpent",
       header: "Total Spent",
       sortable: true,
-      render: (value: string) => (
-        <span className="text-sm text-gray-900">{value}</span>
+      render: (value: unknown) => (
+        <span className="text-sm text-gray-900">{String(value)}</span>
       ),
     },
     {
       key: "lastLogin",
       header: "Last Login",
       sortable: true,
-      render: (value: string) => (
-        <span className="text-sm text-gray-500">{value}</span>
+      render: (value: unknown) => (
+        <span className="text-sm text-gray-500">{String(value)}</span>
       ),
     },
     {
       key: "actions",
       header: "Actions",
       sortable: false,
-      render: (value: any, row: any) => (
+      render: (value: unknown, row: User) => (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
@@ -320,7 +341,7 @@ export default function UsersManagement() {
 
         {/* DataTable */}
         <div className="p-6">
-          <DataTable
+          <DataTable<User>
             data={sampleUsers}
             columns={columns}
             itemsPerPage={10}
@@ -382,7 +403,7 @@ export default function UsersManagement() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200 bg-white">
-                        {selectedUser.orders.map((order: any) => (
+                        {selectedUser.orders.map((order: Order) => (
                           <tr key={order.id} className="hover:bg-gray-50">
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                               {order.id}

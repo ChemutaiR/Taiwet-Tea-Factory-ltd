@@ -9,7 +9,41 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
-export default function JobForm({ job, onSubmit }: { job?: any; onSubmit: (data: any) => void }) {
+interface JobData {
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  level: string;
+  description: string;
+  requirements: string[];
+  benefits: string[];
+  salaryMin: string;
+  salaryMax: string;
+  currency: string;
+  isActive: boolean;
+  expiresAt: string;
+}
+
+interface Job {
+  title?: string;
+  department?: string;
+  location?: string;
+  type?: string;
+  level?: string;
+  description?: string;
+  requirements?: string[];
+  benefits?: string[];
+  salary?: {
+    min?: string;
+    max?: string;
+    currency?: string;
+  };
+  isActive?: boolean;
+  expiresAt?: string;
+}
+
+export default function JobForm({ job, onSubmit }: { job?: Job; onSubmit: (data: JobData) => void }) {
   const [formData, setFormData] = useState({
     title: job?.title || "",
     department: job?.department || "",

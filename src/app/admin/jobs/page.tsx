@@ -322,23 +322,37 @@ export default function JobsManagement() {
                     {job.deadline}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex space-x-2">
-                      <Link
-                        href={`/admin/jobs/${job.id}`}
-                        className="text-[#2e7d32] hover:text-[#276a2b]"
-                      >
-                        Edit
-                      </Link>
-                      <Link
-                        href={`/admin/jobs/${job.id}/applications`}
-                        className="text-blue-600 hover:text-blue-500"
-                      >
-                        Applications
-                      </Link>
-                      <button className="text-red-600 hover:text-red-500">
-                        Delete
-                      </button>
-                    </div>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                          <span className="sr-only">Open menu</span>
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                          </svg>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="z-50 bg-white border border-gray-300 shadow-lg" align="end">
+                        <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer">
+                          <Link href={`/admin/jobs/${job.id}`} className="block w-full">
+                            Edit Job
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer">
+                          <Link href={`/admin/jobs/${job.id}/applications`} className="block w-full">
+                            View Applications
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer">
+                          Duplicate Job
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="hover:bg-gray-100 cursor-pointer">
+                          {job.status === 'Active' ? 'Close Job' : 'Activate Job'}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="hover:bg-red-50 cursor-pointer text-red-600">
+                          Delete Job
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </td>
                 </tr>
               ))}

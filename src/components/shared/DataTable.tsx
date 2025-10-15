@@ -10,7 +10,7 @@ import {
 interface Column<T> {
   key: keyof T | string;
   header: string;
-  render?: (value: any, row: T) => React.ReactNode;
+  render?: (value: unknown, row: T) => React.ReactNode;
   sortable?: boolean;
   className?: string;
 }
@@ -25,7 +25,7 @@ interface DataTableProps<T> {
   className?: string;
 }
 
-export default function DataTable<T extends Record<string, any>>({
+export default function DataTable<T extends Record<string, unknown>>({
   data,
   columns,
   itemsPerPage = 10,
@@ -54,13 +54,17 @@ export default function DataTable<T extends Record<string, any>>({
   const sortedData = [...filteredData].sort((a, b) => {
     if (!sortConfig) return 0;
 
-    const aValue = a[sortConfig.key];
-    const bValue = b[sortConfig.key];
+    const aValue = a[sortConfig.key as keyof T];
+    const bValue = b[sortConfig.key as keyof T];
 
-    if (aValue < bValue) {
+    // Convert to comparable values
+    const aStr = String(aValue ?? '');
+    const bStr = String(bValue ?? '');
+
+    if (aStr < bStr) {
       return sortConfig.direction === 'asc' ? -1 : 1;
     }
-    if (aValue > bValue) {
+    if (aStr > bStr) {
       return sortConfig.direction === 'asc' ? 1 : -1;
     }
     return 0;
@@ -91,7 +95,7 @@ export default function DataTable<T extends Record<string, any>>({
     if (column.render) {
       return column.render(row[column.key as keyof T], row);
     }
-    return row[column.key as keyof T];
+    return String(row[column.key as keyof T] ?? '');
   };
 
   return (

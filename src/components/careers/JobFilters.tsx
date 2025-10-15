@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,12 +9,13 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default function JobFilters() {
-  const [filters, setFilters] = useState({
-    department: "",
-    location: "",
-    type: "",
-    level: "",
-  });
+  // Note: filters and setFilters are kept for future functionality
+  // const [filters, setFilters] = useState({
+  //   department: "",
+  //   location: "",
+  //   type: "",
+  //   level: "",
+  // });
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">

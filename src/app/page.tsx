@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FeaturedCarousel from "@/components/shared/FeaturedCarousel";
 
 export default function Home() {
@@ -50,7 +51,7 @@ export default function Home() {
         {/* 1. Plucking */}
         <div className="mb-8 grid items-center gap-6 md:grid-cols-2">
           <div>
-            <img src="/picking.jpg" alt="Plucking tea leaves" className="h-60 w-full rounded-lg object-cover md:h-72" />
+            <Image src="/picking.jpg" alt="Plucking tea leaves" width={400} height={288} className="h-60 w-full rounded-lg object-cover md:h-72" />
           </div>
           <div>
             <h3 className="text-lg font-medium">1. Plucking (Harvesting)</h3>
@@ -61,7 +62,7 @@ export default function Home() {
         {/* 2. Withering */}
         <div className="mb-8 grid items-center gap-6 md:grid-cols-2">
           <div className="md:order-2">
-            <img src="/withering.jpg" alt="Withering tea leaves" className="h-60 w-full rounded-lg object-cover md:h-72" />
+            <Image src="/withering.jpg" alt="Withering tea leaves" width={400} height={288} className="h-60 w-full rounded-lg object-cover md:h-72" />
           </div>
           <div className="md:order-1">
             <h3 className="text-lg font-medium">2. Withering</h3>
@@ -72,7 +73,7 @@ export default function Home() {
         {/* 3. Rolling / Cutting */}
         <div className="mb-8 grid items-center gap-6 md:grid-cols-2">
           <div>
-            <img src="/sorting.jpg" alt="Rolling and cutting tea leaves" className="h-60 w-full rounded-lg object-cover md:h-72" />
+            <Image src="/sorting.jpg" alt="Rolling and cutting tea leaves" width={400} height={288} className="h-60 w-full rounded-lg object-cover md:h-72" />
           </div>
           <div>
             <h3 className="text-lg font-medium">3. Rolling / Cutting</h3>
@@ -83,7 +84,7 @@ export default function Home() {
         {/* 4. Fermentation (Oxidation) */}
         <div className="mb-8 grid items-center gap-6 md:grid-cols-2">
           <div className="md:order-2">
-            <img src="/fermenting.jpg" alt="Fermentation of tea" className="h-60 w-full rounded-lg object-cover md:h-72" />
+            <Image src="/fermenting.jpg" alt="Fermentation of tea" width={400} height={288} className="h-60 w-full rounded-lg object-cover md:h-72" />
           </div>
           <div className="md:order-1">
             <h3 className="text-lg font-medium">4. Fermentation (Oxidation)</h3>
@@ -94,7 +95,7 @@ export default function Home() {
         {/* 5. Drying (Firing) */}
         <div className="mb-8 grid items-center gap-6 md:grid-cols-2">
           <div>
-            <img src="/dryer.jfif" alt="Drying tea leaves" className="h-60 w-full rounded-lg object-cover md:h-72" />
+            <Image src="/dryer.jfif" alt="Drying tea leaves" width={400} height={288} className="h-60 w-full rounded-lg object-cover md:h-72" />
           </div>
           <div>
             <h3 className="text-lg font-medium">5. Drying (Firing)</h3>
@@ -105,7 +106,7 @@ export default function Home() {
         {/* 6. Sorting and Grading */}
         <div className="mb-8 grid items-center gap-6 md:grid-cols-2">
           <div className="md:order-2">
-            <img src="/sorting.jpg" alt="Sorting and grading tea" className="h-60 w-full rounded-lg object-cover md:h-72" />
+            <Image src="/sorting.jpg" alt="Sorting and grading tea" width={400} height={288} className="h-60 w-full rounded-lg object-cover md:h-72" />
           </div>
           <div className="md:order-1">
             <h3 className="text-lg font-medium">6. Sorting & Grading</h3>
@@ -116,7 +117,7 @@ export default function Home() {
         {/* 7. Packing and Storage */}
         <div className="grid items-center gap-6 md:grid-cols-2">
           <div>
-            <img src="/backgorund.jpg" alt="Packing and storage" className="h-60 w-full rounded-lg object-cover md:h-72" />
+            <Image src="/backgorund.jpg" alt="Packing and storage" width={400} height={288} className="h-60 w-full rounded-lg object-cover md:h-72" />
           </div>
           <div>
             <h3 className="text-lg font-medium">7. Packing & Storage</h3>
